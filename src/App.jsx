@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Card from './components/taskCard/Card';
 import TaskComponent from './components/taskcon/TaskComponent';
 import './App.css';
+import Loader from './components/Loader';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTasks, updateTaskStatus, createTask } from "./slices/taskSlice";
@@ -29,7 +30,7 @@ function App() {
 
   return (
     <div className='main'>
-      <div>
+      <div className='heading'>
         <h1>Task Manager Application</h1>
       </div>
       <div className='create-btn'>
@@ -45,9 +46,11 @@ function App() {
         </div>
       )}
 
-      <div className="container">
+      <div className="container ">
         {status === 'loading' ? (
-          <p>Loading...</p>
+          <div className='Loader'>
+          <Loader/>
+          </div>
         ) : (
           tasks && tasks.map((task, index) => (
             <Card
